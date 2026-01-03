@@ -1,0 +1,7 @@
+/* First <th> in <thead> */
+#simple-table-header th:first-child {
+  border-top-left-radius: 1rem;
+}
+#simple-table-header th:last-child {
+  border-top-right-radius: 1rem;
+}

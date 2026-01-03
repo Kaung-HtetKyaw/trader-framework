@@ -1,0 +1,8 @@
+helm:
+  parameters:
+  - name: image.repository
+    value: 648770817652.dkr.ecr.us-west-2.amazonaws.com/ui
+    forcestring: true
+  - name: image.tag
+    value: v0.143.18
+    forcestring: true

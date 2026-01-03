@@ -1,0 +1,29 @@
+import { IconProps } from '@/types/misc';
+
+const SuccessIcon = (props: IconProps) => {
+  const { className, style } = props;
+  return (
+    <svg
+      className={className}
+      style={style}
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M0 8C0 3.58172 3.58172 0 8 0H16C20.4183 0 24 3.58172 24 8V16C24 20.4183 20.4183 24 16 24H8C3.58172 24 0 20.4183 0 16V8Z"
+        fill="#26C300"
+      />
+      <path
+        d="M10.25 12L11.4167 13.1667L13.75 10.8333M17.25 12C17.25 14.8995 14.8995 17.25 12 17.25C9.1005 17.25 6.75 14.8995 6.75 12C6.75 9.1005 9.1005 6.75 12 6.75C14.8995 6.75 17.25 9.1005 17.25 12Z"
+        stroke="#F6F6F9"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+export default SuccessIcon;

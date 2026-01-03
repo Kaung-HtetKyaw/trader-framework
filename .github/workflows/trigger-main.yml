@@ -1,0 +1,29 @@
+name: Dev Build and Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  semver:
+    uses: kubegrade/actions/.github/workflows/semver.yml@v0.9.2
+    secrets: inherit
+  
+  build-release:
+    needs: semver
+    concurrency:
+      group: ${{ matrix.target }}
+      cancel-in-progress: false
+    strategy:
+      matrix:
+        target: [ dev ]
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write 
+    uses: kubegrade/actions/.github/workflows/release-semantic-next.yml@v0.9.2
+    with:
+      environment: ${{ matrix.target }}
+      tag: ${{ needs.semver.outputs.tag }}
+    secrets: inherit

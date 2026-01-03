@@ -1,0 +1,84 @@
+.flexible-dashed {
+  position: relative;
+  border: none;
+}
+
+.flexible-dashed {
+  position: relative;
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.flexible-dashed::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  background:
+    repeating-linear-gradient(
+        to right,
+        var(--border-color) 0,
+        var(--border-color) var(--dash-size),
+        transparent var(--dash-size),
+        transparent calc(var(--dash-size) + var(--gap-size))
+      )
+      0 0 / 100% var(--border-width),
+    repeating-linear-gradient(
+        to bottom,
+        var(--border-color) 0,
+        var(--border-color) var(--dash-size),
+        transparent var(--dash-size),
+        transparent calc(var(--dash-size) + var(--gap-size))
+      )
+      calc(100% - var(--border-width)) 0 / var(--border-width) 100%,
+    repeating-linear-gradient(
+        to left,
+        var(--border-color) 0,
+        var(--border-color) var(--dash-size),
+        transparent var(--dash-size),
+        transparent calc(var(--dash-size) + var(--gap-size))
+      )
+      0 calc(100% - var(--border-width)) / 100% var(--border-width),
+    repeating-linear-gradient(
+        to top,
+        var(--border-color) 0,
+        var(--border-color) var(--dash-size),
+        transparent var(--dash-size),
+        transparent calc(var(--dash-size) + var(--gap-size))
+      )
+      0 0 / var(--border-width) 100%;
+  background-repeat: no-repeat;
+}
+
+.react-flow__edge.selected path {
+  stroke-dasharray: 5;
+  animation: dashdraw 0.5s linear infinite;
+  stroke: #04a1f9 !important;
+  stroke-width: 2px;
+}
+
+@keyframes dashdraw {
+  from {
+    stroke-dashoffset: 10;
+  }
+}
+
+.react-flow__node:focus {
+  box-shadow: none;
+}
+
+.react-flow__node-group.selectable:focus {
+  box-shadow: none !important;
+}
+
+/* remove default style for selected nodee, we will apply it in custom node component with tailwind */
+.react-flow__node.selected {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.react-flow__node-group.selectable:hover {
+  box-shadow: none !important;
+}

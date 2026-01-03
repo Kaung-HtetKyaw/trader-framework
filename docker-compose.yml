@@ -1,0 +1,33 @@
+name: ui
+
+x-common-variables: &common-variables
+  REDIS_PORT: ${REDIS_PORT}
+
+services:
+  redis:
+    image: redis:6.2.6
+    container_name: ui-redis
+    command: >
+      redis-server 
+      --appendonly yes 
+      --auto-aof-rewrite-percentage 100 
+      --auto-aof-rewrite-min-size 64mb 
+      --maxmemory 512mb 
+      --maxmemory-policy allkeys-lru
+    ports:
+      - ${REDIS_PORT}:6379
+    volumes:
+      - redis:/data
+    env_file:
+      - ./.env
+      - ./.env.docker
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  redis:
+    driver: local
